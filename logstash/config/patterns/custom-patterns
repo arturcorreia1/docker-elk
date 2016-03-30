@@ -1,0 +1,32 @@
+#Queue 41d926f9-f1b3-4129-abfd-d4fad975cbb8 is delivering reference Reference[3618330]:NON-RELIABLE:ServerMessa...
+WILDFLY_LOGGER_THREAD (?:\[.+\])
+#(#@)
+#CUSTOMFORMAT (?:(.*#.*@.*))
+ANY (.*)
+CUSTOMFORMAT \(%{ANY:operation}#%{ANY:requestId}@%{ANY:sourceComponent}%%{ANY:neTL}\)
+INVOCATION_TIME \( %{NUMBER:invocationTime:long} ms\)
+APPSERVER_STARTUP_TIME %{NUMBER:startupTime:long}ms
+
+BASE_LOG_MESSAGE %{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:loglevel}\s+%{WILDFLY_LOGGER_THREAD:thread} %{CUSTOMFORMAT:customInfo} %{WILDFLY_LOGGER_THREAD:logger}
+
+#2016-02-16 13:25:21,197 INFO  [MSC service thread 1-6] (#@%) [org.jboss.as] JBAS015899: WildFly 8.2.1.Final-ossnms-006 "Tweek" starting
+APPSERVER_START_EVENT %{BASE_LOG_MESSAGE} JBAS015899: %{ANY:logMessage}
+
+
+#2016-02-16 13:25:50,686 INFO  [Controller Boot Thread] (#@%) [org.jboss.as] JBAS015874: WildFly 8.2.1.Final-ossnms-006 "Tweek" started in 30021ms
+APPSERVER_STARTED_EVENT %{BASE_LOG_MESSAGE} JBAS015874: %{ANY:logMessage} %{APPSERVER_STARTUP_TIME}
+
+
+#2016-02-22 17:52:45,224 DEBUG [EE-ManagedThreadFactory-dcnManager-events-Thread-45] (#@%) [com.ossnms.dcn_manager.events.ne.PhysicalNeConnectedEventHandler] Handling #event on Physical NE 3159 from state CONNECTING.
+DCN_CH_STATE_EVENT %{BASE_LOG_MESSAGE} Handling event on Physical NE %{NUMBER:ne} from state %{ANY:state}.
+
+#2016-02-25 20:18:05,880 DEBUG [EE-ManagedThreadFactory-messaging-Thread-70] (attributeValueChange-NetworkElementProxy#6400361
+#@dcnManager%)[com.ossnms.dcn_manager.bicnet.connector.outbound.notifications.NeNotificationsManagerImpl] NE 7155 'N028_NANO_SW2' state changed to INITIALIZED on #active connection.
+DCN_CH_STATE_INITIALIZED_EVENT %{BASE_LOG_MESSAGE} NE %{NUMBER:ne} '%{ANY:neName}' state changed to %{ANY:state} on
+
+#2016-02-25 20:15:23,956 INFO  [EE-ManagedThreadFactory-messaging-Thread-54] (attributeValueChange-LogRecord#6348604@northboundTmfInterface%6561) [JavaMediationCall] >> #getSingleNetworkElement
+JAVA_MEDIATION_CALL_OUT_EVENT %{BASE_LOG_MESSAGE} %{ANY:mediation} >> %{JAVAMETHOD:methodName}
+
+
+#2016-02-25 20:15:23,953 INFO  [EE-ManagedThreadFactory-messaging-Thread-49] (attributeValueChange-LogRecord#6347758@northboundTmfInterface%7167) [JavaMediationCall] << #getSingleNetworkElement ( 1283 ms)
+JAVA_MEDIATION_CALL_RESULT_EVENT %{BASE_LOG_MESSAGE} %{ANY:mediation} << %{JAVAMETHOD:methodName} %{INVOCATION_TIME}
