@@ -1,0 +1,75 @@
+2016-04-16T15:42:52Z DBG  Disable stderr logging
+2016-04-16T15:42:52Z DBG  Initializing output plugins
+2016-04-16T15:42:52Z INFO GeoIP disabled: No paths were set under output.geoip.paths
+2016-04-16T15:42:52Z INFO Activated console as output plugin.
+2016-04-16T15:42:52Z INFO Max Retries set to: 3
+2016-04-16T15:42:52Z DBG  connect
+2016-04-16T15:42:52Z INFO Activated logstash as output plugin.
+2016-04-16T15:42:52Z DBG  Create output worker
+2016-04-16T15:42:52Z DBG  Create output worker
+2016-04-16T15:42:52Z DBG  No output is defined to store the topology. The server fields might not be filled.
+2016-04-16T15:42:52Z INFO Publisher name: d7653f0cdf1e
+2016-04-16T15:42:52Z INFO Flush Interval set to: 1s
+2016-04-16T15:42:52Z INFO Max Bulk Size set to: 2048
+2016-04-16T15:42:52Z DBG  create bulk processing worker (interval=1s, bulk size=2048)
+2016-04-16T15:42:52Z INFO Flush Interval set to: 1s
+2016-04-16T15:42:52Z INFO Max Bulk Size set to: 2048
+2016-04-16T15:42:52Z DBG  create bulk processing worker (interval=1s, bulk size=2048)
+2016-04-16T15:42:52Z INFO Init Beat: filebeat; Version: 1.2.1
+2016-04-16T15:42:52Z INFO filebeat sucessfully setup. Start running.
+2016-04-16T15:42:52Z INFO Registry file set to: /etc/filebeat/logs/fb_registry.filebeat
+2016-04-16T15:42:52Z INFO Loading registrar data from /etc/filebeat/logs/fb_registry.filebeat
+2016-04-16T15:42:52Z DBG  Set idleTimeoutDuration to 5s
+2016-04-16T15:42:52Z DBG  File Configs: [/etc/filebeat/logs_to_parse/*.log*"]
+2016-04-16T15:42:52Z INFO Set ignore_older duration to 0
+2016-04-16T15:42:52Z INFO Set close_older duration to 1h0m0s
+2016-04-16T15:42:52Z INFO Set scan_frequency duration to 10s
+2016-04-16T15:42:52Z INFO Invalid input type set: 
+2016-04-16T15:42:52Z INFO Input type set to: log
+2016-04-16T15:42:52Z INFO Set backoff duration to 1s
+2016-04-16T15:42:52Z INFO Set max_backoff duration to 10s
+2016-04-16T15:42:52Z INFO force_close_file is disabled
+2016-04-16T15:42:52Z DBG  Waiting for 1 prospectors to initialise
+2016-04-16T15:42:52Z INFO Starting prospector of type: log
+2016-04-16T15:42:52Z DBG  exclude_files: []
+2016-04-16T15:42:52Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:42:52Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:42:52Z DBG  No pending prospectors. Finishing setup
+2016-04-16T15:42:52Z INFO All prospectors initialised with 0 states to persist
+2016-04-16T15:42:52Z INFO Starting Registrar
+2016-04-16T15:42:52Z INFO Start sending events to output
+2016-04-16T15:42:52Z INFO Starting spooler: spool_size: 2048; idle_timeout: 5s
+2016-04-16T15:42:55Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:02Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:02Z DBG  Start next scan
+2016-04-16T15:43:02Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:43:07Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:12Z DBG  Start next scan
+2016-04-16T15:43:12Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:43:15Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:22Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:22Z DBG  Start next scan
+2016-04-16T15:43:22Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:43:30Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:32Z DBG  Start next scan
+2016-04-16T15:43:32Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:43:37Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:42Z DBG  Start next scan
+2016-04-16T15:43:42Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:43:45Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:52Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:43:52Z DBG  Start next scan
+2016-04-16T15:43:52Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:44:00Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:44:02Z DBG  Start next scan
+2016-04-16T15:44:02Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:44:07Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:44:12Z DBG  Flushing spooler because of timeout. Events flushed: 0
+2016-04-16T15:44:12Z DBG  Start next scan
+2016-04-16T15:44:12Z DBG  scan path /etc/filebeat/logs_to_parse/*.log*"
+2016-04-16T15:44:16Z DBG  Received sigterm/sigint, stopping
+2016-04-16T15:44:16Z INFO Stopping Registrar
+2016-04-16T15:44:16Z INFO Ending Registrar
+2016-04-16T15:44:16Z DBG  Write registry file: /etc/filebeat/logs/fb_registry.filebeat
+2016-04-16T15:44:16Z INFO Registry file updated. 0 states written.
+2016-04-16T15:44:16Z INFO Cleaning up filebeat before shutting down.

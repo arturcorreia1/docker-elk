@@ -1,22 +1,34 @@
-elasticsearch:
-  image: elasticsearch:2.2.1
-  command: elasticsearch -Des.network.host=0.0.0.0
-  ports:
-    - "9200:9200"
-    - "9300:9300"
-logstash:
-  image: logstash:2.2.2
-  command: logstash -f /etc/logstash/conf.d/varel_serverlog-to-elastic.json
-  volumes:
-    - ./logstash/config:/etc/logstash/conf.d
-    - ./logstash/logs:/etc/logstash/logs
-  links:
-    - elasticsearch
-kibana:
-  image: kibana:4.4.2
-  volumes:
-    - ./kibana/config/:/opt/kibana/config/
-  ports:
-    - "5601:5601"
-  links:
-    - elasticsearch
+version: '2'
+services:
+ elasticsearch:
+   image: elasticsearch:2.2.1
+   command: elasticsearch -Des.network.host=0.0.0.0
+   ports:
+     - "9200:9200"
+     - "9300:9300"
+   volumes:
+     - ./elasticsearch/storage/:/usr/share/elasticsearch/data
+ logstash:
+   image: logstash:2.2.2
+   command: logstash -f /etc/logstash/conf.d/serverlog-to-elastic.json
+   volumes:
+     - ./logstash/config:/etc/logstash/conf.d
+   links:
+     - elasticsearch
+ kibana:
+   image: kibana:4.4.2
+   volumes:
+     - ./kibana/config/:/opt/kibana/config/
+   ports:
+     - "5601:5601"
+   links:
+     - elasticsearch
+ filebeat:
+   image: prima/filebeat:1.2.1
+   command: filebeat -c /etc/filebeat/conf.d/filebeat.yml
+   volumes:
+     - ./filebeat/config/:/etc/filebeat/conf.d/
+     - ./filebeat/logs/:/etc/filebeat/logs/
+     - ./filebeat/logs_to_parse/:/etc/filebeat/logs_to_parse/
+   links:
+     - logstash

@@ -1,0 +1,21 @@
+filebeat:
+  registry_file: /etc/filebeat/logs/fb_registry.filebeat
+  prospectors:
+    -
+      paths:
+        - /etc/filebeat/logs_to_parse/*.log*"
+      document_type: varellog
+output:
+  logstash:
+    hosts: ["localhost:5000"]
+  console:
+    pretty: true
+shipper:
+logging:
+  level: debug
+  to_files: true
+  to_syslog: false
+  files:
+    path: /etc/filebeat/logs
+    name: beat.log
+    rotateeverybytes: 10485760 # = 10MB
