@@ -1,20 +1,19 @@
 elasticsearch:
-  image: elasticsearch:latest
+  image: elasticsearch:2.2.1
   command: elasticsearch -Des.network.host=0.0.0.0
   ports:
     - "9200:9200"
     - "9300:9300"
 logstash:
-  image: logstash:latest
-  command: logstash -f /etc/logstash/conf.d/logstash.conf
+  image: logstash:2.2.2
+  command: logstash -f /etc/logstash/conf.d/varel_serverlog-to-elastic.json
   volumes:
     - ./logstash/config:/etc/logstash/conf.d
-  ports:
-    - "5000:5000"
+    - ./logstash/logs:/etc/logstash/logs
   links:
     - elasticsearch
 kibana:
-  build: kibana/
+  image: kibana:4.4.2
   volumes:
     - ./kibana/config/:/opt/kibana/config/
   ports:

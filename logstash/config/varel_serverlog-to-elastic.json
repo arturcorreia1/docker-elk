@@ -1,13 +1,13 @@
 input {
   file {
-    path => "/home/artur/dev/workspace/coriant/varel/100ClientsTest/bicnet/*"
+    path => "/etc/logstash/logs/varel/bicnet/*"
     start_position => "beginning"
   }
 }
 
 filter {
   grok {
-    patterns_dir => "/home/artur/dev/logstash_confs/patterns"
+    patterns_dir => "/etc/logstash/conf.d/patterns"
     match => ["message", "%{APPSERVER_START_EVENT}"]
     match => ["message", "%{APPSERVER_STARTED_EVENT}"]
     add_field => { "type" => "appserver" }
@@ -15,7 +15,7 @@ filter {
 
    if "_grokparsefailure" in [tags] {
 	grok {
-	  patterns_dir => "/home/artur/dev/logstash_confs/patterns"
+	  patterns_dir => "/etc/logstash/conf.d/patterns"
 	  match => ["message", "%{DCN_CH_STATE_EVENT}"]
 	  match => ["message", "%{DCN_CH_STATE_INITIALIZED_EVENT}"]
 	  add_field => { "type" => "dcnstate" }
@@ -25,7 +25,7 @@ filter {
 
    if "_grokparsefailure" in [tags] {
 	grok {
-	  patterns_dir => "/home/artur/dev/logstash_confs/patterns"
+	  patterns_dir => "/etc/logstash/conf.d/patterns"
 	  match => ["message", "%{JAVA_MEDIATION_CALL_OUT_EVENT}"]
 	  add_field => { "type" => "mediationcall"  "direction" => "out" }
 	  remove_tag => [ "_grokparsefailure" ]
@@ -34,7 +34,7 @@ filter {
 
    if "_grokparsefailure" in [tags] {
 	grok {
-	  patterns_dir => "/home/artur/dev/logstash_confs/patterns"
+	  patterns_dir => "/etc/logstash/conf.d/patterns"
 	  match => ["message", "%{JAVA_MEDIATION_CALL_RESULT_EVENT}"]
 	  add_field => { "type" => "mediationcall" "direction" => "in"}
 	  remove_tag => [ "_grokparsefailure" ]
