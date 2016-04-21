@@ -7,12 +7,14 @@ services:
      - "9200:9200"
      - "9300:9300"
    volumes:
-     - ./elasticsearch/storage/:/usr/share/elasticsearch/data
+     - ~/docker_composer_monitor_data/elasticsearch/data:/usr/share/elasticsearch/data
  logstash:
-   image: logstash:2.2.2
-   command: logstash -f /etc/logstash/conf.d/serverlog-to-elastic.json
+   image: viaeuropa/logstash-beats
+   command: logstash -f /etc/logstash/conf.d/serverlog-to-elastic.json --debug
    volumes:
      - ./logstash/config:/etc/logstash/conf.d
+   ports:
+     - "5000:5000"
    links:
      - elasticsearch
  kibana:
@@ -28,7 +30,8 @@ services:
    command: filebeat -c /etc/filebeat/conf.d/filebeat.yml
    volumes:
      - ./filebeat/config/:/etc/filebeat/conf.d/
-     - ./filebeat/logs/:/etc/filebeat/logs/
-     - ./filebeat/logs_to_parse/:/etc/filebeat/logs_to_parse/
+     - ~/docker_composer_monitor_data/filebeat/logs/:/etc/filebeat/logs/
+     - ~/docker_composer_monitor_data/filebeat/logs_to_parse/varel/bicnet/:/usr/share/fileabeat/logs_to_parse/varel/bicnet/
    links:
      - logstash
+ 

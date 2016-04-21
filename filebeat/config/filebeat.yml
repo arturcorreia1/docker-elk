@@ -3,16 +3,16 @@ filebeat:
   prospectors:
     -
       paths:
-        - /etc/filebeat/logs_to_parse/*.log*"
+        - /usr/share/fileabeat/logs_to_parse/varel/bicnet/*
       document_type: varellog
 output:
   logstash:
-    hosts: ["localhost:5000"]
+    hosts: [logstash]
   console:
     pretty: true
 shipper:
 logging:
-  level: debug
+  level: info
   to_files: true
   to_syslog: false
   files:
