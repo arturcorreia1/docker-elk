@@ -7,12 +7,12 @@ filebeat:
       document_type: varellog
 output:
   logstash:
-    hosts: [logstash]
-  console:
-    pretty: true
+    hosts: ["logstash:5000"]
+#  console:
+#    pretty: true
 shipper:
 logging:
-  level: info
+  level: error
   to_files: true
   to_syslog: false
   files:

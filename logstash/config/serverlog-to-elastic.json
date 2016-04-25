@@ -6,6 +6,18 @@ input {
 
 
 filter {
+
+   if "varellog" in [type] {
+	 mutate {
+	     add_tag => [ "varellog"]
+	  }
+   }
+
+
+ mutate {
+     remove_field => [ "beat", "fields", "input_type", "offset", "source", "type", "count" ]
+  }
+
   grok {
     patterns_dir => "/etc/logstash/conf.d/patterns"
     match => ["message", "%{APPSERVER_START_EVENT}"]
@@ -57,12 +69,16 @@ filter {
 
 
 output {
-
-  stdout {
-	codec => rubydebug
-  }
-  
-# elasticsearch {
-#	index => varel_bicnetlog
+# if "varellog" in [tags] {
+#  stdout {   
+#    codec => rubydebug
 #  }
+#}
+
+ if "varellog" in [tags] {
+   elasticsearch {
+        hosts => "elasticsearch:9200"
+	index => varel_bicnetlog
+   }
+ }
 }

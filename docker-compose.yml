@@ -10,7 +10,7 @@ services:
      - ~/docker_composer_monitor_data/elasticsearch/data:/usr/share/elasticsearch/data
  logstash:
    image: viaeuropa/logstash-beats
-   command: logstash -f /etc/logstash/conf.d/serverlog-to-elastic.json --debug
+   command: logstash -f /etc/logstash/conf.d/serverlog-to-elastic.json
    volumes:
      - ./logstash/config:/etc/logstash/conf.d
    ports:
